@@ -1,0 +1,67 @@
+# ~/.inputrc
+# use command "bind -f ~/.inputrc" to bind the below keys
+# use "showkey -a" to find the key code
+
+# pressing Space after the command will auto-expand it inline
+" ": magic-space
+
+# Expands ~ to the home directory during line editing.
+set expand-tilde on
+
+# completions listed immediately instead of ringing the bell
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+
+# case-insensitive tab completion
+set completion-ignore-case on
+
+# show all possible completions without double tabbing
+set show-all-if-ambiguous on
+set menu-complete-display-prefix on
+
+# no bell sound
+set bell-style none
+
+# # search history with up and down arrow
+# "\e[A": history-search-backward
+# "\e[B": history-search-forward
+
+# # search history with up and down arrow
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+# "\C-r": reverse-search-history
+# "\C-s": forward-search-history
+
+# Menu-style completion
+# set menu-complete on
+
+# "\e[01;33m": active-region-start-color
+
+"\e[Z": menu-complete-backward
+"\C-i": menu-complete
+
+# Quickly delete backward words
+"\C-w": backward-kill-word
+
+# completions appended by file types reported by the stat system call
+set visible-stats On
+
+# colored completions determined by LS_COLORS
+set colored-stats On
+
+# common completion text part substituted by ellipsis
+set completion-prefix-display-length 3
+# command "bind -P | grep complete" displays all key bindings for completion
+# complete can be found on "\e\e".
+# complete-command can be found on "\e!".
+# complete-filename can be found on "\e/".
+# complete-hostname can be found on "\e@".
+# complete-into-braces can be found on "\e{".
+# complete-username can be found on "\e~".
+# complete-variable can be found on "\e$".
+# dynamic-complete-history can be found on "\e\C-i".
+# glob-complete-word can be found on "\eg".
+# menu-complete can be found on "\C-i".
+# menu-complete-backward can be found on "\e[Z".
+# old-menu-complete is not bound to any keys
+# vi-complete is not bound to any keys

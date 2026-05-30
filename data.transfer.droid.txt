@@ -1,0 +1,19 @@
+git config --list --show-origin
+
+### ~/.gitconfig ###
+[include]
+    path = ~/.config/git/config
+
+### ~/.config/git/config ###
+[credential]
+    helper = store --file ~/.config/git/credentials
+
+sshd -D
+
+ssh-keygen -t ed25519 -C mdamarija@gmail.com
+
+ssh-copy-id -p 60022 192.168.43.203
+
+rsync -vrtlD --delete --exclude='/Android' -e 'ssh -p 60022' 192.168.43.203:/storage/emulated/0/ Internal/
+
+ssh -p 60022 192.168.43.203

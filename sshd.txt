@@ -1,0 +1,49 @@
+pkg i termux-services -y (sv-enable)
+pkg i termux-auth -y (passwd)
+pkg i openssh openssl openssh-sftp-server -y
+pkg i termux-api (clipboard)
+
+sshd -D → debugging only
+sshd / sshd -p 60022→ temporary manual runs
+pkill sshd
+
+sv-enable sshd → correct long-term solution - survives restarts (within Termux)
+sv-disable sshd
+sv status sshd
+
+sv up sshd
+sv down sshd
+
+termux-wake-lock
+termux-wake-unlock
+
+termux-open --content-type text .file	# in order to open a file outside termux
+
+termux-reload-settings
+
+nano $PREFIX/etc/ssh/sshd_config
+Port 60022
+
+ssh-copy-id -p 60022 192.168.43.203
+ssh -p 60022 192.168.43.1
+rsync -vrtlD -e 'ssh -p 60022' ./pwsafe.psafe3 192.168.43.203:/sdcard/fswp/
+scp -P 60022 192.168.43.1:~/.dircolors ~/dls
+scp file phone:/sdcard/
+scp -r ./dir phone:/sdcard/  ( /home/madz/.ssh/config )
+
+sftp Hnr << EOF
+  put ~/docs/backup/install/android/droid.files/.bash_aliases .bash_aliases
+  put ~/.config/pwsafe/pwsafe.psafe3 /sdcard/fswp/pwsafe.psafe3
+EOF
+
+sftp user@host << EOF
+  get /some/remote/path1/file1 /some/local/path1/file1
+  get /some/remote/path2/file2 /some/local/path2/file2
+  get /some/remote/path3/file3 /some/local/path3/file3
+EOF
+
+sftp -b transfer.batch Hnr
+
+transfer.batch:
+put /home/madz/docs/backup/install/android/droid.files/.bash_aliases .bash_aliases
+put ~/.config/pwsafe/pwsafe.psafe3 /sdcard/fswp/pwsafe.psafe3
